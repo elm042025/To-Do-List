@@ -11,7 +11,7 @@ const liveText = document.querySelector("#liveText");
 
 const savedTasksList = document.querySelector("#savedTasksUL");
 
-//! ----- Function for adding, appending new tasks to list on submit ----- //
+//! -------------------- Function for adding, appending new tasks to list on submit (refactoring comes later, baby steps) -------------------- //
 
 let savedTasksArr = [];
 
@@ -19,7 +19,7 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
    e.preventDefault(); //?  Prevents page from reloading
    const value = newTaskInput.value.trim();
 
-   //! ---------- Make sure the task input in valid ----------
+   //! ---------- Make sure the task input in valid ---------- //
    if (!value) {
       liveText.textContent = "Please enter a task to save";
       liveText.classList = "redLiveText";
@@ -27,39 +27,51 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
    }
    savedTasksArr.push(value);
 
-   //! ---------- Create saved task li element with checkbox, task content, edit and delete button ----------
+   //! ----- Create saved task li element with checkbox, task content, edit and delete button ----- //
 
-   //! ---------- li element ---------
+   //! ---------- li element --------- //
    const li = document.createElement("li");
    li.className = "savedTask";
 
-   //! ---------- checkbox ----------
+   //! ---------- checkbox ---------- //
    const checkbox = document.createElement("input");
    checkbox.type = "checkbox";
    checkbox.className = "savedTaskCheckbox";
 
-   //! ---------- task content ----------
+   //! ---------- checkbox adding and removing CSS class for checked items ---------- //
+
+   checkbox.addEventListener("change", function () {
+      if (checkbox.checked) {
+         savedTaskContent.classList.add("checkedTask");
+      } else {
+         savedTaskContent.classList.remove("checkedTask");
+      }
+   });
+
+   //! ---------- task content ---------- //
    const savedTaskContent = document.createElement("input");
    savedTaskContent.type = "text";
    savedTaskContent.value = value;
    savedTaskContent.setAttribute("readonly", true);
    savedTaskContent.className = "savedTaskContent";
 
-   //! ---------- edit button ----------
+   //! ---------- edit button ---------- //
    const editBtn = document.createElement("button");
    editBtn.className = "editSavedTaskBtn";
    editBtn.innerHTML = `<img src="./assets/icons/edit.png" alt="black pen on an empty square meaning to edit the saved task"/>`;
 
-   //! ---------- delete button ----------
+   //! --------------- edit button function for editing saved tasks ---------------//
+
+   //! ---------- delete button ---------- //
    const deleteBtn = document.createElement("button");
    deleteBtn.className = "deleteSavedTaskBtn";
    deleteBtn.innerHTML = `<img src="./assets/icons/delete.png" alt="white trashcan in a red filled circle meaning to delete the saved task"/>`;
 
-   //! ---------- append to li ----------
+   //! ---------- append to li ---------- //
    li.append(checkbox, savedTaskContent, editBtn, deleteBtn);
    savedTasksList.append(li);
 
-   //! ---------- clear input and update live text ----------
+   //! ---------- clear input and update live text ---------- //
    newTaskInput.value = "";
    liveText.textContent = "Task added!";
    liveText.className = "greenLiveText";
@@ -67,3 +79,5 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
       liveText.textContent = "";
    }, 2000);
 });
+
+//! --------------- function for checking and unchecking saved task --------------- //
