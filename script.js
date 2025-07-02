@@ -25,18 +25,29 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
       liveText.classList = "redLiveText";
       return;
    }
-   savedTasksArr.push(value);
+   savedTasksArr.push({
+      text: value,
+      completed: false,
+   });
 
    //! ----- Create saved task li element with checkbox, task content, edit and delete button ----- //
 
-   //! ---------- li element --------- //
+   //! ---------- creating li element --------- //
    const li = document.createElement("li");
    li.className = "savedTask";
+   li.setAttribute("data-index", savedTasksArr.length - 1);
 
-   //! ---------- checkbox ---------- //
+   //! ---------- creating checkbox ---------- //
    const checkbox = document.createElement("input");
    checkbox.type = "checkbox";
    checkbox.className = "savedTaskCheckbox";
+
+   //! ---------- creating task content input ---------- //
+   const savedTaskContent = document.createElement("input");
+   savedTaskContent.type = "text";
+   savedTaskContent.value = value;
+   savedTaskContent.setAttribute("readonly", true);
+   savedTaskContent.className = "savedTaskContent";
 
    //! ---------- checkbox adding and removing CSS class for checked items ---------- //
 
@@ -48,19 +59,33 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
       }
    });
 
-   //! ---------- task content ---------- //
-   const savedTaskContent = document.createElement("input");
-   savedTaskContent.type = "text";
-   savedTaskContent.value = value;
-   savedTaskContent.setAttribute("readonly", true);
-   savedTaskContent.className = "savedTaskContent";
-
-   //! ---------- edit button ---------- //
+   //! ---------- creating edit button ---------- //
    const editBtn = document.createElement("button");
    editBtn.className = "editSavedTaskBtn";
    editBtn.innerHTML = `<img src="./assets/icons/edit.png" alt="black pen on an empty square meaning to edit the saved task"/>`;
 
    //! --------------- edit button function for editing saved tasks ---------------//
+   editBtn.addEventListener("click", function () {
+      if (savedTaskContent.hasAttribute("readonly")) {
+         savedTaskContent.removeAttribute("readonly");
+         savedTaskContent.focus();
+
+         editBtn.innerHTML = `<img src="./assets/icons/save.png" alt="floppy disk icon indicating save after editing"/>`;
+      } else {
+         savedTaskContent.setAttribute("readonly", true);
+         editBtn.innerHTML = `<img src="./assets/icons/edit.png" alt="black pen on an empty square meaning to edit the saved task"/>`;
+
+         const index = parseInt(li.getAttribute("data-index"));
+         savedTasksArr[index] = savedTaskContent.value;
+
+         liveText.textContent = "Task edited successfully !";
+         liveText.class.add("greenLiveText");
+         setTimeout(function () {
+            liveText.textContent = "";
+            liveText.classList.remove("greenLiveText");
+         }, 2000);
+      }
+   });
 
    //! ---------- delete button ---------- //
    const deleteBtn = document.createElement("button");
@@ -79,5 +104,3 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
       liveText.textContent = "";
    }, 2000);
 });
-
-//! --------------- function for checking and unchecking saved task --------------- //
