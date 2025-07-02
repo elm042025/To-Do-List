@@ -20,6 +20,7 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
    const value = newTaskInput.value.trim();
 
    //! ---------- Make sure the task input in valid ---------- //
+
    if (!value) {
       liveText.textContent = "Please enter a task to save";
       liveText.classList = "redLiveText";
@@ -33,16 +34,19 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
    //! ----- Create saved task li element with checkbox, task content, edit and delete button ----- //
 
    //! ---------- creating li element --------- //
+
    const li = document.createElement("li");
    li.className = "savedTask";
    li.setAttribute("data-index", savedTasksArr.length - 1);
 
    //! ---------- creating checkbox ---------- //
+
    const checkbox = document.createElement("input");
    checkbox.type = "checkbox";
    checkbox.className = "savedTaskCheckbox";
 
    //! ---------- creating task content input ---------- //
+
    const savedTaskContent = document.createElement("input");
    savedTaskContent.type = "text";
    savedTaskContent.value = value;
@@ -60,11 +64,13 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
    });
 
    //! ---------- creating edit button ---------- //
+
    const editBtn = document.createElement("button");
    editBtn.className = "editSavedTaskBtn";
    editBtn.innerHTML = `<img src="./assets/icons/edit.png" alt="black pen on an empty square meaning to edit the saved task"/>`;
 
    //! --------------- edit button function for editing saved tasks ---------------//
+
    editBtn.addEventListener("click", function () {
       if (savedTaskContent.hasAttribute("readonly")) {
          savedTaskContent.removeAttribute("readonly");
@@ -80,6 +86,7 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
 
          liveText.textContent = "Task edited successfully !";
          liveText.class.add("greenLiveText");
+
          setTimeout(function () {
             liveText.textContent = "";
             liveText.classList.remove("greenLiveText");
@@ -88,15 +95,18 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
    });
 
    //! ---------- delete button ---------- //
+
    const deleteBtn = document.createElement("button");
    deleteBtn.className = "deleteSavedTaskBtn";
    deleteBtn.innerHTML = `<img src="./assets/icons/delete.png" alt="white trashcan in a red filled circle meaning to delete the saved task"/>`;
 
    //! ---------- append to li ---------- //
+
    li.append(checkbox, savedTaskContent, editBtn, deleteBtn);
    savedTasksList.append(li);
 
-   //! ---------- clear input and update live text ---------- //
+   //! ---------- clear input and update live text for next task ---------- //
+
    newTaskInput.value = "";
    liveText.textContent = "Task added!";
    liveText.className = "greenLiveText";
