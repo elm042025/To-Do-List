@@ -30,13 +30,13 @@ button {
 }
 
 .checkedTask {
-   color: rgba(0, 0, 0, 0.49);
+   color: #2e294e7c;
    text-decoration: line-through;
    font-style: italic;
 }
 .greenLiveText {
-   color: green;
+   color: #26de81;
 }
 .redLiveText {
-   color: red;
+   color: #f34235;
 }

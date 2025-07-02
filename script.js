@@ -24,6 +24,9 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
    if (!value) {
       liveText.textContent = "Please enter a task to save";
       liveText.classList = "redLiveText";
+      setTimeout(function () {
+         liveText.textContent = "";
+      }, 2000);
       return;
    }
    savedTasksArr.push({
@@ -84,7 +87,7 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
          const index = parseInt(li.getAttribute("data-index"));
          savedTasksArr[index] = savedTaskContent.value;
 
-         liveText.textContent = "Task edited successfully !";
+         liveText.textContent = "Edited task saved!";
          liveText.class.add("greenLiveText");
 
          setTimeout(function () {
