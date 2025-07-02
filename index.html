@@ -7,6 +7,24 @@
          content="width=device-width, initial-scale=1.0"
       />
       <link
+         rel="preconnect"
+         href="https://fonts.googleapis.com"
+      />
+      <link
+         rel="preconnect"
+         href="https://fonts.gstatic.com"
+         crossorigin
+      />
+      <link
+         href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+         rel="stylesheet"
+      />
+      <link
+         rel="shortcut icon"
+         href="assets/icons/fav-icon.png"
+         type="image/x-icon"
+      />
+      <link
          rel="stylesheet"
          href="style.css"
       />
@@ -17,8 +35,73 @@
       <title>To-Do App</title>
    </head>
    <body>
-      <header></header>
-      <main></main>
+      <header>
+         <h1>To-Do List</h1>
+         <img
+            src="./assets/icons/to-do-list.png"
+            alt=""
+         />
+      </header>
+      <main>
+         <section class="app">
+            <form id="newTaskForm">
+               <input
+                  type="text"
+                  name="newTaskInput"
+                  id="newTaskInput"
+                  placeholder="Buy milk..."
+               />
+               <button
+                  type="submit"
+                  id="addTaskBtn"
+               >
+                  <img
+                     src="./assets/icons/add.png"
+                     alt="green circle icon with a white plus sign inside it for adding a new task to the list"
+                  />
+               </button>
+            </form>
+
+            <p
+               id="liveText"
+               aria-live="polite"
+            >
+               Live text
+            </p>
+
+            <ul id="savedTasksUL">
+               <!--! Template  -->
+
+               <!-- <li class="savedTask">
+                  <input
+                     type="checkbox"
+                     name="savedTaskCheckbox"
+                     class="SavedTaskCheckbox"
+                     
+                  />
+
+                  <input
+                     type="text"
+                     readonly
+                     class="savedTaskContent"
+                  />
+
+                  <button class="editSavedTaskBtn">
+                     <img
+                        src="./assets/icons/edit.png"
+                        alt="black pen on an empty square meaning to edit the task"
+                     />
+                  </button>
+                  <button class="deleteSavedTaskBtn">
+                     <img
+                        src="./assets/icons/delete.png"
+                        alt="white trash can in a red filled circle meaning to delete the task"
+                     />
+                  </button>
+               </li> -->
+            </ul>
+         </section>
+      </main>
       <footer></footer>
    </body>
 </html>
