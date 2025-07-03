@@ -11,13 +11,17 @@ const liveText = document.querySelector("#liveText");
 
 const savedTasksList = document.querySelector("#savedTasksUL");
 
-//! -------------------- Function for adding, appending new tasks to list on submit (refactoring comes later, baby steps) -------------------- //
+//! --------------- Functions for adding, appending new tasks to list on submit (refactoring comes later, baby steps) --------------- //
 
 let savedTasksArr = loadTasksFromLocalStorage();
+
 //! ------ Render tasks for localStorage on load ------- //
+
 savedTasksArr.forEach((task, index) => {
    createTaskElement(task, index);
 });
+
+//! ---------- EventListener function for submitting a new task ---------- //
 
 document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
    e.preventDefault(); //?  Prevents page from reloading
@@ -34,11 +38,16 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
       }, 2000);
       return;
    }
+
+   //! push as obj to arr
+
    savedTasksArr.push({
       text: value,
       completed: false,
    });
+
    saveTasksToLocalStorage();
+
    createTaskElement(savedTasksArr[savedTasksArr.length - 1], savedTasksArr.length - 1);
 
    //! ---------- clear input and update live text for next task ---------- //
