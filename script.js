@@ -114,6 +114,12 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
       document.querySelectorAll(".savedTask").forEach((taskLi, i) => {
          taskLi.setAttribute("data-index", i);
       });
+      liveText.textContent = "Task deleted!";
+      liveText.classList.add("redLiveText");
+      setTimeout(function () {
+         liveText.textContent = "";
+         liveText.classList.remove("redLiveText");
+      }, 2000);
    });
 
    //! ---------- append to li ---------- //
