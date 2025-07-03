@@ -11,7 +11,7 @@ const liveText = document.querySelector("#liveText");
 
 const savedTasksList = document.querySelector("#savedTasksUL");
 
-//! --------------- Functions for adding, appending new tasks to list on submit (refactoring comes later, baby steps) --------------- //
+//! ---------- Functions for adding, appending new tasks to list on submit (refactoring comes later?, baby steps) ---------- //
 
 let savedTasksArr = loadTasksFromLocalStorage();
 
@@ -33,7 +33,7 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
       liveText.textContent = "Please enter a task to save";
       liveText.classList.add("redLiveText");
       setTimeout(function () {
-         liveText.textContent = "";
+         liveText.textContent = "Live feedback";
          liveText.classList.remove("redLiveText");
       }, 2000);
       return;
@@ -56,7 +56,7 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
    liveText.textContent = "Task added!";
    liveText.classList.add("greenLiveText");
    setTimeout(function () {
-      liveText.textContent = "";
+      liveText.textContent = "Live feedback";
       liveText.classList.remove("greenLiveText");
    }, 2000);
 });
@@ -134,7 +134,7 @@ function createTaskElement(task, index) {
          liveText.classList.add("greenLiveText");
 
          setTimeout(function () {
-            liveText.textContent = "";
+            liveText.textContent = "Live feedback";
             liveText.classList.remove("greenLiveText");
          }, 2000);
       }
@@ -161,7 +161,7 @@ function createTaskElement(task, index) {
       liveText.textContent = "Task deleted!";
       liveText.classList.add("redLiveText");
       setTimeout(function () {
-         liveText.textContent = "";
+         liveText.textContent = "Live feedback";
          liveText.classList.remove("redLiveText");
       }, 2000);
    });
