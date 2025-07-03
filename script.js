@@ -13,19 +13,24 @@ const savedTasksList = document.querySelector("#savedTasksUL");
 
 //! -------------------- Function for adding, appending new tasks to list on submit (refactoring comes later, baby steps) -------------------- //
 
-let savedTasksArr = [];
+let savedTasksArr = loadTasksFromLocalStorage();
+//! ------ Render tasks for localStorage on load ------- //
+savedTasksArr.forEach((task, index) => {
+   createTaskElement(task, index);
+});
 
 document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
    e.preventDefault(); //?  Prevents page from reloading
    const value = newTaskInput.value.trim();
 
-   //! ---------- Make sure the task input in valid ---------- //
+   //! ---------- Make sure the task input is valid ---------- //
 
    if (!value) {
       liveText.textContent = "Please enter a task to save";
-      liveText.classList = "redLiveText";
+      liveText.classList.add("redLiveText");
       setTimeout(function () {
          liveText.textContent = "";
+         liveText.classList.remove("redLiveText");
       }, 2000);
       return;
    }
@@ -33,28 +38,57 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
       text: value,
       completed: false,
    });
+   saveTasksToLocalStorage();
+   createTaskElement(savedTasksArr[savedTasksArr.length - 1], savedTasksArr.length - 1);
 
-   //! ----- Create saved task li element with checkbox, task content, edit and delete button ----- //
+   //! ---------- clear input and update live text for next task ---------- //
 
+   newTaskInput.value = "";
+   liveText.textContent = "Task added!";
+   liveText.classList.add("greenLiveText");
+   setTimeout(function () {
+      liveText.textContent = "";
+      liveText.classList.remove("greenLiveText");
+   }, 2000);
+});
+
+//! ---------- function for storing tasks in localStorage ---------- //
+
+function saveTasksToLocalStorage() {
+   localStorage.setItem("savedTasksArr", JSON.stringify(savedTasksArr));
+}
+
+//! ------ function for loading tasks from localStorage (if any) ----- //
+
+function loadTasksFromLocalStorage() {
+   const tasks = localStorage.getItem("savedTasksArr");
+   return tasks ? JSON.parse(tasks) : [];
+}
+
+//! ----- Create saved task li element with checkbox, task content, edit and delete button ----- //
+
+function createTaskElement(task, index) {
    //! ---------- creating li element --------- //
 
    const li = document.createElement("li");
    li.className = "savedTask";
-   li.setAttribute("data-index", savedTasksArr.length - 1);
+   li.setAttribute("data-index", index);
 
    //! ---------- creating checkbox ---------- //
 
    const checkbox = document.createElement("input");
    checkbox.type = "checkbox";
    checkbox.className = "savedTaskCheckbox";
+   checkbox.checked = task.completed;
 
    //! ---------- creating task content input ---------- //
 
    const savedTaskContent = document.createElement("input");
    savedTaskContent.type = "text";
-   savedTaskContent.value = value;
+   savedTaskContent.value = task.text;
    savedTaskContent.setAttribute("readonly", true);
    savedTaskContent.className = "savedTaskContent";
+   if (task.completed) savedTaskContent.classList.add("checkedTask");
 
    //! ---------- checkbox adding and removing CSS class for checked items ---------- //
 
@@ -64,6 +98,8 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
       } else {
          savedTaskContent.classList.remove("checkedTask");
       }
+      savedTasksArr[index].completed = checkbox.checked;
+      saveTasksToLocalStorage();
    });
 
    //! ---------- creating edit button ---------- //
@@ -78,14 +114,12 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
       if (savedTaskContent.hasAttribute("readonly")) {
          savedTaskContent.removeAttribute("readonly");
          savedTaskContent.focus();
-
          editBtn.innerHTML = `<img src="./assets/icons/save.png" alt="floppy disk icon indicating save after editing"/>`;
       } else {
          savedTaskContent.setAttribute("readonly", true);
          editBtn.innerHTML = `<img src="./assets/icons/edit.png" alt="black pen on an empty square meaning to edit the saved task"/>`;
-
-         const index = parseInt(li.getAttribute("data-index"));
-         savedTasksArr[index] = savedTaskContent.value;
+         savedTasksArr[index].text = savedTaskContent.value;
+         saveTasksToLocalStorage();
 
          liveText.textContent = "Edited task saved!";
          liveText.classList.add("greenLiveText");
@@ -107,8 +141,9 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
 
    deleteBtn.addEventListener("click", function () {
       const index = parseInt(li.getAttribute("data-index"));
-      li.remove(li); //! removed from DOM
+      li.remove(); //! removed from DOM
       savedTasksArr.splice(index, 1); //! removed from array
+      saveTasksToLocalStorage();
 
       //! update data-index on remaining tasks
       document.querySelectorAll(".savedTask").forEach((taskLi, i) => {
@@ -126,13 +161,4 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
 
    li.append(checkbox, savedTaskContent, editBtn, deleteBtn);
    savedTasksList.append(li);
-
-   //! ---------- clear input and update live text for next task ---------- //
-
-   newTaskInput.value = "";
-   liveText.textContent = "Task added!";
-   liveText.className = "greenLiveText";
-   setTimeout(function () {
-      liveText.textContent = "";
-   }, 2000);
-});
+}
