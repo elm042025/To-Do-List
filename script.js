@@ -88,7 +88,7 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
          savedTasksArr[index] = savedTaskContent.value;
 
          liveText.textContent = "Edited task saved!";
-         liveText.class.add("greenLiveText");
+         liveText.classList.add("greenLiveText");
 
          setTimeout(function () {
             liveText.textContent = "";
@@ -102,6 +102,19 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
    const deleteBtn = document.createElement("button");
    deleteBtn.className = "deleteSavedTaskBtn";
    deleteBtn.innerHTML = `<img src="./assets/icons/delete.png" alt="white trashcan in a red filled circle meaning to delete the saved task"/>`;
+
+   //! --------------- delete button function for deleting saved tasks ---------------//
+
+   deleteBtn.addEventListener("click", function () {
+      const index = parseInt(li.getAttribute("data-index"));
+      li.remove(li); //! removed from DOM
+      savedTasksArr.splice(index, 1); //! removed from array
+
+      //! update data-index on remaining tasks
+      document.querySelectorAll(".savedTask").forEach((taskLi, i) => {
+         taskLi.setAttribute("data-index", i);
+      });
+   });
 
    //! ---------- append to li ---------- //
 
