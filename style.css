@@ -56,6 +56,7 @@ body {
    min-height: 100vh;
    color: #2c3e50;
    line-height: 1.6;
+   background-image: url(./assets/images/undraw_chore-list_ylw0.svg);
 }
 
 /* Header styles */
@@ -64,11 +65,15 @@ header {
    backdrop-filter: blur(10px);
    border-bottom: 1px solid rgba(52, 73, 94, 0.1);
    padding: 1.5rem 0;
-   text-align: center;
+   /* text-align: center; */
    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
    position: sticky;
    top: 0;
    z-index: 100;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 0.75rem;
 }
 
 header h1 {
@@ -80,8 +85,8 @@ header h1 {
 }
 
 header img {
-   width: 2.5rem;
-   height: 2.5rem;
+   width: 64px;
+   height: auto;
    opacity: 0.8;
 }
 
@@ -132,7 +137,7 @@ main {
 }
 
 #addTaskBtn {
-   background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+   background: linear-gradient(135deg, #3498db00 0%, #297fb900 100%);
    border: none;
    border-radius: 12px;
    width: 48px;
@@ -155,8 +160,8 @@ main {
 }
 
 #addTaskBtn img {
-   width: 32px;
-   height: 32px;
+   width: 50px;
+   height: auto;
 }
 
 /* Live text styles */
@@ -168,7 +173,9 @@ main {
    padding: 0.5rem;
    border-radius: 8px;
    transition: all 0.3s ease;
+}
 
+.blueLiveText {
    background: #278eae0e;
    color: #278eae;
    border: 1px solid #278eae2c;
@@ -314,8 +321,8 @@ main {
 
 .editSavedTaskBtn img,
 .deleteSavedTaskBtn img {
-   width: 24px;
-   height: 24px;
+   width: 32px;
+   height: 32px;
    opacity: 0.8;
    transition: opacity 0.3s ease;
 }

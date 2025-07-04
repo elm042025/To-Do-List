@@ -35,6 +35,7 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
       setTimeout(function () {
          liveText.textContent = "Live feedback";
          liveText.classList.remove("redLiveText");
+         liveText.classList.add("blueLiveText");
       }, 2000);
       return;
    }
@@ -58,6 +59,7 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
    setTimeout(function () {
       liveText.textContent = "Live feedback";
       liveText.classList.remove("greenLiveText");
+      liveText.classList.add("blueLiveText");
    }, 2000);
 });
 
@@ -131,11 +133,13 @@ function createTaskElement(task, index) {
          saveTasksToLocalStorage();
 
          liveText.textContent = "Edited task saved!";
+         liveText.classList.remove("blueLiveText");
          liveText.classList.add("greenLiveText");
 
          setTimeout(function () {
             liveText.textContent = "Live feedback";
             liveText.classList.remove("greenLiveText");
+            liveText.classList.add("blueLiveText");
          }, 2000);
       }
    });
