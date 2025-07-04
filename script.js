@@ -20,7 +20,7 @@ let savedTasksArr = loadTasksFromLocalStorage();
 savedTasksArr.forEach((task, index) => {
    createTaskElement(task, index);
 });
-
+liveText.classList.add("blueLiveText");
 //! ---------- EventListener function for submitting a new task ---------- //
 
 document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
