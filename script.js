@@ -117,7 +117,8 @@ function createTaskElement(task, index) {
 
    const editBtn = document.createElement("button");
    editBtn.className = "editSavedTaskBtn";
-   editBtn.innerHTML = `<img src="./assets/icons/edit.png" alt="black pen on an empty square meaning to edit the saved task"/>`;
+   editBtn.innerHTML = `<img src="./assets/icons/edit.png" alt="black pen on an empty square meaning to edit the saved task"/> Edit`;
+   editBtn.title = "Edit this task";
 
    //! --------------- edit button function for editing saved tasks ---------------//
 
@@ -148,7 +149,8 @@ function createTaskElement(task, index) {
 
    const deleteBtn = document.createElement("button");
    deleteBtn.className = "deleteSavedTaskBtn";
-   deleteBtn.innerHTML = `<img src="./assets/icons/delete.png" alt="white trashcan in a red filled circle meaning to delete the saved task"/>`;
+   deleteBtn.innerHTML = `<img src="./assets/icons/delete.png" alt="white trashcan in a red filled circle meaning to delete the saved task"/> Delete`;
+   deleteBtn.title = "Delete this task";
 
    //! --------------- delete button function for deleting saved tasks ---------------//
 
