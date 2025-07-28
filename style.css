@@ -139,8 +139,8 @@ main {
    background: linear-gradient(135deg, #3498db00 0%, #297fb900 100%);
    border: none;
    border-radius: 12px;
-   width: 48px;
-   height: 48px;
+   width: fit-content;
+   height: fit-content;
    cursor: pointer;
    transition: all 0.3s ease;
    display: flex;
@@ -298,8 +298,8 @@ main {
    background: #ffffff;
    border: 1px solid rgba(52, 73, 94, 0.1);
    border-radius: 8px;
-   width: 36px;
-   height: 36px;
+   width: fit-content;
+   height: fit-content;
    cursor: pointer;
    display: flex;
    flex-direction: column;

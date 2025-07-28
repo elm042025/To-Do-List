@@ -126,10 +126,10 @@ function createTaskElement(task, index) {
       if (savedTaskContent.hasAttribute("readonly")) {
          savedTaskContent.removeAttribute("readonly");
          savedTaskContent.focus();
-         editBtn.innerHTML = `<img src="./assets/icons/save.png" alt="floppy disk icon indicating save after editing"/>`;
+         editBtn.innerHTML = `<img src="./assets/icons/save.png" alt="floppy disk icon indicating save after editing"/> Save`;
       } else {
          savedTaskContent.setAttribute("readonly", true);
-         editBtn.innerHTML = `<img src="./assets/icons/edit.png" alt="black pen on an empty square meaning to edit the saved task"/>`;
+         editBtn.innerHTML = `<img src="./assets/icons/edit.png" alt="black pen on an empty square meaning to edit the saved task"/> Edit`;
          savedTasksArr[index].text = savedTaskContent.value;
          saveTasksToLocalStorage();
 
