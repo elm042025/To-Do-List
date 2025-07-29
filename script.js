@@ -128,6 +128,18 @@ function createTaskElement(task, index) {
          savedTaskContent.focus();
          editBtn.innerHTML = `<img src="./assets/icons/save.png" alt="floppy disk icon indicating save after editing"/> Save`;
       } else {
+         if (!savedTaskContent.value.trim()) {
+            liveText.textContent = "Please enter a task to save";
+            liveText.classList.add("redLiveText");
+            setTimeout(function () {
+               liveText.textContent = "Live feedback";
+               liveText.classList.remove("redLiveText");
+               liveText.classList.add("blueLiveText");
+            }, 2000);
+            savedTaskContent.focus();
+            return;
+         }
+
          savedTaskContent.setAttribute("readonly", true);
          editBtn.innerHTML = `<img src="./assets/icons/edit.png" alt="black pen on an empty square meaning to edit the saved task"/> Edit`;
          savedTasksArr[index].text = savedTaskContent.value;
