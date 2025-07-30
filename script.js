@@ -91,6 +91,7 @@ function createTaskElement(task, index) {
    checkbox.type = "checkbox";
    checkbox.className = "savedTaskCheckbox";
    checkbox.checked = task.completed;
+   checkbox.title = "Mark task as completed";
 
    //! ---------- creating task content input ---------- //
 
