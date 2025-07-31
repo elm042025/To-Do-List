@@ -91,7 +91,7 @@ function createTaskElement(task, index) {
    checkbox.type = "checkbox";
    checkbox.className = "savedTaskCheckbox";
    checkbox.checked = task.completed;
-   checkbox.title = "Mark task as completed";
+   checkbox.title = checkbox.checked ? "Uncheck task as completed" : "Check task as completed";
 
    //! ---------- creating task content input ---------- //
 
@@ -107,8 +107,10 @@ function createTaskElement(task, index) {
    checkbox.addEventListener("change", function () {
       if (checkbox.checked) {
          savedTaskContent.classList.add("checkedTask");
+         checkbox.title = checkbox.checked ? "Uncheck task as completed" : "Check task as completed";
       } else {
          savedTaskContent.classList.remove("checkedTask");
+         checkbox.title = checkbox.checked ? "Uncheck task as completed" : "Check task as completed";
       }
       savedTasksArr[index].completed = checkbox.checked;
       saveTasksToLocalStorage();
