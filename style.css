@@ -85,6 +85,7 @@ main {
 
 #newTaskInput {
    flex: 1;
+   flex-shrink: 1;
    padding: 0.875rem 1rem;
    border: 2px solid #e9ecef;
    border-radius: 12px;
@@ -228,6 +229,7 @@ main {
    position: relative;
    appearance: none;
    outline: none;
+   flex-shrink: 0;
 }
 
 .savedTaskCheckbox:checked {
@@ -335,13 +337,13 @@ main {
    }
 
    #newTaskForm {
-      flex-direction: column;
+      /* flex-direction: column; */
       gap: 0.5rem;
    }
 
    #addTaskBtn {
-      width: 100%;
-      height: 44px;
+      width: fit-content;
+      /* height: 44px; */
    }
 
    .savedTask {
