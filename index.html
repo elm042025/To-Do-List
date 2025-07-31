@@ -43,20 +43,29 @@
          />
       </header> -->
       <main>
-         <section class="header">
-            <h1>To-Do List</h1>
-            <img
-               src="./assets/images/undraw_chore-list_ylw0.svg"
-               alt="to do list logo"
-            />
+         <section class="headerContainer">
+            <section class="header">
+               <h1>To-Do List</h1>
+               <img
+                  src="./assets/images/undraw_chore-list_ylw0.svg"
+                  alt="to do list logo"
+               />
+            </section>
+            <p
+               id="liveText"
+               aria-live="polite"
+            >
+               Live feedback
+            </p>
          </section>
+
          <section class="app">
             <form id="newTaskForm">
                <input
                   type="text"
                   name="newTaskInput"
                   id="newTaskInput"
-                  placeholder="Save the world..."
+                  placeholder="Put off world domination for now..."
                />
                <button
                   type="submit"
@@ -71,12 +80,12 @@
                </button>
             </form>
 
-            <p
+            <!-- <p
                id="liveText"
                aria-live="polite"
             >
                Live feedback
-            </p>
+            </p> -->
 
             <ul id="savedTasksUL"></ul>
          </section>
