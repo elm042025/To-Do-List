@@ -79,16 +79,54 @@
                   Add
                </button>
             </form>
+            <section class="taskFilter-and-sorter">
+               <section class="filters">
+                  <label for="completedTasks">
+                     <input
+                        type="radio"
+                        name="taskFilter"
+                        id="completedTasks"
+                        value="completed"
+                     />
+                     Completed Tasks
+                  </label>
+                  <label for="allTasks">
+                     <input
+                        type="radio"
+                        name="taskFilter"
+                        id="allTasks"
+                        value="all"
+                        checked
+                     />
+                     All Tasks
+                  </label>
+                  <label for="activeTasks">
+                     <input
+                        type="radio"
+                        name="taskFilter"
+                        id="activeTasks"
+                        value="active"
+                     />
+                     Active Tasks
+                  </label>
+               </section>
+               <section class="sorter">
+                  <label for="sortBy">
+                     Sort by: 
+                     <select
+                        name="sortBy"
+                        id="sortBy"
+                     >
+                        <option value="default">Default</option>
+                        <option value="alphabetical">Alphabetical</option>
+                        <option value="completed">Completed</option>
+                     </select>
+                  </label>
+            </section>
+            </section>
 
-            <!-- <p
-               id="liveText"
-               aria-live="polite"
-            >
-               Live feedback
-            </p> -->
 
             <ul id="savedTasksUL"></ul>
-         </section>
       </main>
    </body>
 </html>

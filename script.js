@@ -79,6 +79,8 @@ function loadTasksFromLocalStorage() {
 //! ----- Create saved task li element with checkbox, task content, edit and delete button ----- //
 
 function createTaskElement(task, index) {
+   //! ---------- destructure task object for easier access ---------- //
+   const { text, completed } = task;
    //! ---------- creating li element --------- //
 
    const li = document.createElement("li");
@@ -90,17 +92,17 @@ function createTaskElement(task, index) {
    const checkbox = document.createElement("input");
    checkbox.type = "checkbox";
    checkbox.className = "savedTaskCheckbox";
-   checkbox.checked = task.completed;
+   checkbox.checked = completed;
    checkbox.title = checkbox.checked ? "Uncheck task as completed" : "Check task as completed";
 
    //! ---------- creating task content input ---------- //
 
    const savedTaskContent = document.createElement("input");
    savedTaskContent.type = "text";
-   savedTaskContent.value = task.text;
+   savedTaskContent.value = text;
    savedTaskContent.setAttribute("readonly", true);
    savedTaskContent.className = "savedTaskContent";
-   if (task.completed) savedTaskContent.classList.add("checkedTask");
+   if (completed) savedTaskContent.classList.add("checkedTask");
 
    //! ---------- checkbox adding and removing CSS class for checked items ---------- //
 
@@ -192,3 +194,5 @@ function createTaskElement(task, index) {
    li.append(checkbox, savedTaskContent, editBtn, deleteBtn);
    savedTasksList.append(li);
 }
+
+//* ---------- Filter tasks based on radio input selection ---------- //
