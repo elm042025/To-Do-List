@@ -42,7 +42,7 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
          liveText.textContent = "Live feedback";
          liveText.classList.remove("redLiveText");
          liveText.classList.add("blueLiveText");
-      }, 2000);
+      }, 4000);
       return;
    }
 
@@ -52,7 +52,7 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
       text: value,
       completed: false,
    });
-
+   saveTasksToLocalStorage(); //? Save to localStorage
    updateTaskList();
 
    //! ---------- clear input and update live text for next task ---------- //
@@ -64,7 +64,7 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
       liveText.textContent = "Live feedback";
       liveText.classList.remove("greenLiveText");
       liveText.classList.add("blueLiveText");
-   }, 2000);
+   }, 4000);
 });
 
 //! ---------- function for storing tasks in localStorage ---------- //
@@ -97,7 +97,7 @@ function createTaskElement(task, index) {
    checkbox.type = "checkbox";
    checkbox.className = "savedTaskCheckbox";
    checkbox.checked = completed;
-   checkbox.title = checkbox.checked ? "Uncheck task as completed" : "Check task as completed";
+   checkbox.title = checkbox.checked ? "Mark as incomplete" : "Mark as complete";
 
    //! ---------- creating task content input ---------- //
 
@@ -113,10 +113,10 @@ function createTaskElement(task, index) {
    checkbox.addEventListener("change", function () {
       if (checkbox.checked) {
          savedTaskContent.classList.add("checkedTask");
-         checkbox.title = checkbox.checked ? "Uncheck task as completed" : "Check task as completed";
+         checkbox.title = checkbox.checked ? "Mark as incomplete" : "Mark as complete";
       } else {
          savedTaskContent.classList.remove("checkedTask");
-         checkbox.title = checkbox.checked ? "Uncheck task as completed" : "Check task as completed";
+         checkbox.title = checkbox.checked ? "Mark as incomplete" : "Mark as complete";
       }
       savedTasksArr[index].completed = checkbox.checked;
       saveTasksToLocalStorage();
@@ -144,7 +144,7 @@ function createTaskElement(task, index) {
                liveText.textContent = "Live feedback";
                liveText.classList.remove("redLiveText");
                liveText.classList.add("blueLiveText");
-            }, 2000);
+            }, 4000);
             savedTaskContent.focus();
             return;
          }
@@ -156,14 +156,13 @@ function createTaskElement(task, index) {
          updateTaskList();
 
          liveText.textContent = "Edited task saved!";
-         liveText.classList.remove("blueLiveText");
          liveText.classList.add("greenLiveText");
 
          setTimeout(function () {
             liveText.textContent = "Live feedback";
             liveText.classList.remove("greenLiveText");
             liveText.classList.add("blueLiveText");
-         }, 2000);
+         }, 4000);
       }
    });
 
@@ -178,21 +177,21 @@ function createTaskElement(task, index) {
 
    deleteBtn.addEventListener("click", function () {
       const index = parseInt(li.getAttribute("data-index"));
-      li.remove(); //! removed from DOM
       savedTasksArr.splice(index, 1); //! removed from array
       saveTasksToLocalStorage();
+      li.remove(); //! removed from DOM
       updateTaskList(); //! re-render the task list
 
       //! update data-index on remaining tasks
-      document.querySelectorAll(".savedTask").forEach((taskLi, i) => {
-         taskLi.setAttribute("data-index", i);
-      });
+      // document.querySelectorAll(".savedTask").forEach((taskLi, i) => {
+      //    taskLi.setAttribute("data-index", i);
+      // });
       liveText.textContent = "Task deleted!";
       liveText.classList.add("redLiveText");
       setTimeout(function () {
          liveText.textContent = "Live feedback";
          liveText.classList.remove("redLiveText");
-      }, 2000);
+      }, 4000);
    });
 
    //! ---------- append to li ---------- //
@@ -235,5 +234,3 @@ function updateTaskList() {
 
 document.querySelector(".filters").addEventListener("change", updateTaskList);
 document.querySelector("#sortBy").addEventListener("change", updateTaskList);
-
-//! STOP NOW!!!!!!!!!!!!!!!!!!!!!!!!!!!1

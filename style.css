@@ -133,12 +133,29 @@ main {
    flex-wrap: wrap;
    padding: 0.5rem;
 }
+.filters label:hover,
+.filters label:active {
+   background: rgba(52, 152, 219, 0.08);
+   border-radius: 6px;
+   cursor: pointer;
+   transition: background 0.2s;
+}
 .sorter {
    display: flex;
    gap: 1rem;
    align-items: center;
    width: 100%;
    padding: 0.5rem;
+}
+.sorter select {
+   padding: 0.5rem;
+   border: 1px solid #e9ecef;
+   border-radius: 8px;
+   background: #ffffff;
+   font-size: 1rem;
+   transition: all 0.3s ease;
+   outline: none;
+   font-family: inherit;
 }
 
 /* Form styles */
