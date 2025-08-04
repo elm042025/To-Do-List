@@ -114,7 +114,7 @@ main {
    /* border: 1px solid rgba(231, 76, 60, 0.2); */
 }
 
-/* Task filter and sorter styles */
+/*! Task filter and sorter styles */
 .taskFilter-and-sorter {
    display: flex;
    flex-direction: column;

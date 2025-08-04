@@ -11,16 +11,22 @@ const liveText = document.querySelector("#liveText");
 
 const savedTasksList = document.querySelector("#savedTasksUL");
 
-//! ---------- Functions for adding, appending new tasks to list on submit (refactoring comes later?, baby steps) ---------- //
+//! ---- Functions for adding, appending new tasks to list on submit (refactoring comes later?, baby steps) ---- //
 
 let savedTasksArr = loadTasksFromLocalStorage();
 
 //! ------ Render tasks for localStorage on load ------- //
 
-savedTasksArr.forEach((task, index) => {
-   createTaskElement(task, index);
-});
+function renderTasks(tasks) {
+   savedTasksList.innerHTML = "";
+   tasks.forEach((task, index) => {
+      createTaskElement(task, index);
+   });
+}
+
 liveText.classList.add("blueLiveText");
+updateTaskList();
+
 //! ---------- EventListener function for submitting a new task ---------- //
 
 document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
@@ -47,9 +53,7 @@ document.querySelector("#newTaskForm").addEventListener("submit", function (e) {
       completed: false,
    });
 
-   saveTasksToLocalStorage();
-
-   createTaskElement(savedTasksArr[savedTasksArr.length - 1], savedTasksArr.length - 1);
+   updateTaskList();
 
    //! ---------- clear input and update live text for next task ---------- //
 
@@ -149,6 +153,7 @@ function createTaskElement(task, index) {
          editBtn.innerHTML = `<img src="./assets/icons/edit.png" alt="black pen on an empty square meaning to edit the saved task"/> Edit`;
          savedTasksArr[index].text = savedTaskContent.value;
          saveTasksToLocalStorage();
+         updateTaskList();
 
          liveText.textContent = "Edited task saved!";
          liveText.classList.remove("blueLiveText");
@@ -176,6 +181,7 @@ function createTaskElement(task, index) {
       li.remove(); //! removed from DOM
       savedTasksArr.splice(index, 1); //! removed from array
       saveTasksToLocalStorage();
+      updateTaskList(); //! re-render the task list
 
       //! update data-index on remaining tasks
       document.querySelectorAll(".savedTask").forEach((taskLi, i) => {
@@ -196,3 +202,38 @@ function createTaskElement(task, index) {
 }
 
 //* ---------- Filter tasks based on radio input selection ---------- //
+
+// 1. Filter logic
+function filterTasks(tasks) {
+   const checkedFilter = document.querySelector('input[name="taskFilter"]:checked').value;
+   if (checkedFilter === "completed") {
+      return tasks.filter((task) => task.completed);
+   } else if (checkedFilter === "active") {
+      return tasks.filter((task) => !task.completed);
+   }
+   return tasks; // "all"
+}
+
+// 2. Sort logic
+function sortTasks(tasks) {
+   const sortBy = document.querySelector("#sortBy").value;
+   let tasksCopy = [...tasks];
+   if (sortBy === "alphabetical") {
+      tasksCopy.sort((a, b) => a.text.localeCompare(b.text));
+   } else if (sortBy === "completed") {
+      // Completed last (change to - for completed first)
+      tasksCopy.sort((a, b) => Number(a.completed) - Number(b.completed));
+   }
+   return tasksCopy;
+}
+
+function updateTaskList() {
+   let tasks = filterTasks(savedTasksArr);
+   tasks = sortTasks(tasks);
+   renderTasks(tasks);
+}
+
+document.querySelector(".filters").addEventListener("change", updateTaskList);
+document.querySelector("#sortBy").addEventListener("change", updateTaskList);
+
+//! STOP NOW!!!!!!!!!!!!!!!!!!!!!!!!!!!1
