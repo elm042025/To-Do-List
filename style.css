@@ -36,7 +36,7 @@ header h1 {
 }
 
 header img {
-   width: 96px;
+   width: 86px;
    height: auto;
    opacity: 1;
 }
@@ -52,7 +52,7 @@ header img {
    position: sticky;
    top: 0;
    z-index: 1000;
-   padding: 0.25rem 0rem;
+   padding: 0.25rem 0.5rem;
 }
 
 /*! Main container */
@@ -76,7 +76,7 @@ main {
 #liveText {
    text-align: center;
    font-weight: 500;
-   font-size: 1.5rem;
+   font-size: 1.25rem;
    margin: 0.75rem 1rem;
    min-height: 1rem;
    padding: 0.5rem;
@@ -126,6 +126,12 @@ main {
    align-items: center;
    flex-wrap: wrap;
    padding: 0.5rem;
+}
+.filters label:hover {
+   background: rgba(52, 152, 219, 0.08);
+   border-radius: 6px;
+   cursor: pointer;
+   transition: background 0.2s;
 }
 .sorter {
    display: flex;
@@ -414,7 +420,7 @@ html {
    text-align: center;
    color: #95a5a6;
    font-style: italic;
-   padding: 3rem 1rem;
+   padding: 3rem 0.5rem;
    border: 2px dashed #e9ecef;
    border-radius: 12px;
    margin-top: 1rem;
