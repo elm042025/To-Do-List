@@ -200,7 +200,7 @@ main {
 #addTaskBtn img {
    width: 50px;
    height: auto;
-   filter: saturate(0.7);
+   filter: saturate(0.9);
 }
 
 /* Task list styles */
