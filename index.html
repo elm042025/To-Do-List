@@ -43,32 +43,21 @@
          />
       </header> -->
       <main>
-         <header>
-            <section class="headerContainer">
-               <section class="header">
-                  <h1>To-Do List</h1>
-                  <img
-                     src="./assets/images/undraw_chore-list_ylw0.svg"
-                     alt="to do list logo"
-                  />
-               </section>
-               <p
-                  id="liveText"
-                  aria-live="polite"
-               >
-                  Live feedback
-               </p>
-            </section>
-         </header>
+         <section class="headerContainer">
+            <header class="header">
+               <h1>To-Do List</h1>
+               <img
+                  src="./assets/images/undraw_chore-list_ylw0.svg"
+                  alt="to do list logo"
+               />
+            </header>
 
-         <section class="app">
             <form id="newTaskForm">
                <input
                   type="text"
                   name="newTaskInput"
                   id="newTaskInput"
                   placeholder="Put off world domination for now..."
-                  autocomplete="off"
                />
                <button
                   type="submit"
@@ -82,6 +71,15 @@
                   Add
                </button>
             </form>
+            <p
+               id="liveText"
+               aria-live="polite"
+            >
+               Live feedback
+            </p>
+         </section>
+
+         <section class="app">
             <section class="taskFilter-and-sorter">
                <section class="filters">
                   <label for="completedTasks">
@@ -115,7 +113,7 @@
                </section>
                <section class="sorter">
                   <label for="sortBy">
-                     Sort by: 
+                     Sort by:
                      <select
                         name="sortBy"
                         id="sortBy"
@@ -128,8 +126,8 @@
                </section>
             </section>
 
-
             <ul id="savedTasksUL"></ul>
+         </section>
       </main>
    </body>
 </html>

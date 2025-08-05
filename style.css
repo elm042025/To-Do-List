@@ -9,22 +9,16 @@
 
 body {
    font-family: "Atkinson Hyperlegible", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-   background: linear-gradient(to bottom, #f0f4f8, #e9eff3);
+   background: linear-gradient(135deg, #d4d4d4 0%, #d0d0d0 100%);
    min-height: 100vh;
    color: #2c3e50;
    line-height: 1.6;
 }
 
 /*! Header styles */
-.header {
-   /* background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.1));
-   backdrop-filter: blur(8px); */
-   /* border-radius: 16px;
-   border-bottom: 1px solid rgba(52, 73, 94, 0.1); */
+header {
    padding: 0.5rem 0;
    text-align: center;
-   /* position: sticky;
-   top: 0; */
    z-index: 100;
    display: flex;
    align-items: center;
@@ -33,7 +27,7 @@ body {
    width: 100%;
 }
 
-.header h1 {
+header h1 {
    font-size: 2.5rem;
    font-weight: 700;
    color: #2c3e50;
@@ -41,14 +35,14 @@ body {
    letter-spacing: -0.5px;
 }
 
-.header img {
+header img {
    width: 128px;
    height: auto;
    opacity: 1;
 }
 .headerContainer {
-   /* background: linear-gradient(to bottom, rgb(255, 255, 255), rgba(255, 255, 255, 0.4)); */
-   backdrop-filter: blur(4px);
+   border-radius: 16px;
+   backdrop-filter: blur(12px);
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -57,7 +51,7 @@ body {
    position: sticky;
    top: 0;
    z-index: 1000;
-   padding: 0.25rem 2rem;
+   padding: 0.25rem 0rem;
 }
 
 /*! Main container */
@@ -68,7 +62,7 @@ main {
 }
 
 .app {
-   background: rgb(255, 255, 255);
+   background: rgba(255, 255, 255, 0.9);
    backdrop-filter: blur(10px);
    border-radius: 16px;
    padding: 2rem;
@@ -81,18 +75,17 @@ main {
 #liveText {
    text-align: center;
    font-weight: 500;
-   margin-bottom: 1rem;
+   margin-bottom: 0.5rem;
    min-height: 1rem;
    padding: 0.5rem;
    border-radius: 25px;
    transition: all 0.3s ease;
    /* position: sticky;
    top: 7.5rem;
+   z-index: 10;
    backdrop-filter: blur(8px); */
    text-shadow: rgba(0, 0, 0, 0.082) 1px 1px 1px;
    width: 100%;
-   box-shadow: 0 1px 8px rgba(39, 142, 174, 0.06);
-   /* border-bottom: 1px solid #e9ecef; */
 }
 
 .blueLiveText {
@@ -113,7 +106,7 @@ main {
    /* border: 1px solid rgba(231, 76, 60, 0.2); */
 }
 
-/*! Task filter and sorter styles */
+/* Task filter and sorter styles */
 .taskFilter-and-sorter {
    display: flex;
    flex-direction: column;
@@ -132,13 +125,6 @@ main {
    flex-wrap: wrap;
    padding: 0.5rem;
 }
-.filters label:hover,
-.filters label:active {
-   background: rgba(52, 152, 219, 0.08);
-   border-radius: 6px;
-   cursor: pointer;
-   transition: background 0.2s;
-}
 .sorter {
    display: flex;
    gap: 1rem;
@@ -146,28 +132,19 @@ main {
    width: 100%;
    padding: 0.5rem;
 }
-.sorter select {
-   padding: 0.5rem;
-   border: 1px solid #e9ecef;
-   border-radius: 8px;
-   background: #ffffff;
-   font-size: 1rem;
-   transition: all 0.3s ease;
-   outline: none;
-   font-family: inherit;
-}
 
 /* Form styles */
 #newTaskForm {
    display: flex;
    gap: 0.75rem;
-   margin-bottom: 1.5rem;
+   margin-bottom: 0.5rem;
+   width: 100%;
 }
 
 #newTaskInput {
    flex: 1;
    flex-shrink: 1;
-   padding: 0.875rem 1rem;
+   padding: 0.875rem 2.5rem;
    border: 2px solid #e9ecef;
    border-radius: 12px;
    font-size: 1rem;
@@ -189,7 +166,7 @@ main {
 }
 
 #addTaskBtn {
-   background: #fcfcfc;
+   background: #fcfcfc66;
    border: 1px solid rgba(52, 73, 94, 0.1);
    border-radius: 8px;
    width: fit-content;
