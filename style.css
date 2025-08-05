@@ -88,7 +88,6 @@ main {
    transition: all 0.3s ease;
    /* position: sticky;
    top: 7.5rem;
-   z-index: 10;
    backdrop-filter: blur(8px); */
    text-shadow: rgba(0, 0, 0, 0.082) 1px 1px 1px;
    width: 100%;
