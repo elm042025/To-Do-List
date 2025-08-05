@@ -28,7 +28,7 @@ header {
 }
 
 header h1 {
-   font-size: 2.5rem;
+   font-size: 1.5rem;
    font-weight: 700;
    color: #2c3e50;
    margin-bottom: 0.5rem;
@@ -36,11 +36,12 @@ header h1 {
 }
 
 header img {
-   width: 128px;
+   width: 96px;
    height: auto;
    opacity: 1;
 }
 .headerContainer {
+   background-color: #0000000a;
    border-radius: 16px;
    backdrop-filter: blur(12px);
    display: flex;
@@ -75,7 +76,8 @@ main {
 #liveText {
    text-align: center;
    font-weight: 500;
-   margin-bottom: 0.5rem;
+   font-size: 1.5rem;
+   margin: 0.75rem 1rem;
    min-height: 1rem;
    padding: 0.5rem;
    border-radius: 25px;
@@ -84,7 +86,7 @@ main {
    top: 7.5rem;
    z-index: 10;
    backdrop-filter: blur(8px); */
-   text-shadow: rgba(0, 0, 0, 0.082) 1px 1px 1px;
+   text-shadow: rgba(0, 0, 0, 0.144) 1px 1px 1px;
    width: 100%;
 }
 
@@ -137,7 +139,7 @@ main {
 #newTaskForm {
    display: flex;
    gap: 0.75rem;
-   margin-bottom: 0.5rem;
+   margin: 0.75rem 1rem;
    width: 100%;
 }
 
