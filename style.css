@@ -357,7 +357,7 @@ main {
    }
 
    .app {
-      padding: 1.5rem;
+      padding: 0.5rem;
    }
 
    header h1 {
@@ -374,7 +374,7 @@ main {
       height: 3.5rem;
    }
    #newTaskInput {
-      padding: 0.5rem 0.75rem;
+      padding: 0.25rem 0.5rem;
    }
    #addTaskBtn {
       height: 3.5rem;
@@ -382,6 +382,18 @@ main {
    #addTaskBtn img {
       width: 32px;
       height: auto;
+   }
+   .taskFilter-and-sorter {
+      gap: 0rem;
+      font-size: 0.85rem;
+   }
+   .filters {
+      align-items: flex-start;
+      gap: 0rem;
+   }
+   .filters label {
+      display: flex;
+      gap: 0.25rem;
    }
    #liveText {
       margin: 0 auto;
