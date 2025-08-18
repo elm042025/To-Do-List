@@ -395,6 +395,9 @@ main {
       display: flex;
       gap: 0.25rem;
    }
+   .sorter option:hover {
+      background: rgba(52, 152, 219, 0.1);
+   }
    #liveText {
       margin: 0 auto;
    }
